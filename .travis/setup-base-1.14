@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd $HOME
+wget https://github.com/dials/dials/releases/download/v1.14.0/dials-v1-14-13-linux-x86_64.tar.xz -O - | tar xJ
+cd dials-installer-dev
+./install --nopycompile --verbose --prefix=..
+cd ..
+
+# Fix up build path
+ln dials-v* build_dials -s

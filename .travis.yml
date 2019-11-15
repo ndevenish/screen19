@@ -14,7 +14,26 @@ jobs:
          - python3 -m compileall -q *
 
     - stage: build
-      name: "Build - Python 2.7"
+      name: "Build - DIALS 1.14"
+      python: 2.7
+      install:
+         # Setup a DIALS installation
+         - ./.travis/setup-base-1.14
+
+      before_script:
+         # Enter DIALS environment, install screen19, and update dispatchers
+         - cd $HOME/build_dials/build
+         - . setpaths.sh
+         - libtbx.pip install -e $HOME/build/xia2/screen19
+         - libtbx.configure .
+
+      script:
+         # Run the tests
+         - cd $HOME/build/xia2/screen19
+         - pytest -ra -n auto --regression
+         - .travis/check-working-directory-is-clean
+
+    - name: "Build - Python 2.7"
       python: 2.7
       install:
          # Setup a DIALS installation
@@ -30,7 +49,7 @@ jobs:
       script:
          # Run the tests
          - cd $HOME/build/xia2/screen19
-         - pytest -ra -n auto
+         - pytest -ra -n auto --regression
          - .travis/check-working-directory-is-clean
 
     - name: "Build - Python 3.6"
@@ -49,7 +68,7 @@ jobs:
       script:
          # Run the tests
          - cd $HOME/build/xia2/screen19
-         - pytest -ra -n auto
+         - pytest -ra -n auto --regression
          - .travis/check-working-directory-is-clean
 
       # Assuming you have installed the travis-ci CLI tool, after you
