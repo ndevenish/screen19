@@ -1,7 +1,4 @@
 # coding: utf-8
-
-"""Common tools for the I19 module."""
-
 from __future__ import absolute_import, division, print_function
 
 import logging
@@ -12,6 +9,9 @@ import traceback
 from typing import Dict, Tuple  # noqa: F401
 
 import procrunner
+
+"""Common tools for the I19 module."""
+
 
 # Flake8 does not detect typing yet (https://gitlab.com/pycqa/flake8/issues/342)
 

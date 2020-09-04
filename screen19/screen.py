@@ -41,7 +41,6 @@ Examples:
   screen19 minimum_exposure.data=indexed <image_files>
 
 """
-
 from __future__ import absolute_import, division, print_function
 
 import json
@@ -63,9 +62,17 @@ from libtbx import Auto
 from libtbx.introspection import number_of_processors
 from libtbx.phil import scope
 
+from dxtbx.model import ExperimentList
+from dxtbx.model.experiment_list import (
+    BeamComparison,
+    DetectorComparison,
+    ExperimentListFactory,
+    ExperimentListTemplateImporter,
+    GoniometerComparison,
+)
+
 import dials.command_line.integrate
 import dials.util.version
-import screen19
 from dials.algorithms.indexing import DialsIndexError
 from dials.algorithms.indexing.bravais_settings import (
     refined_settings_from_refined_triclinic,
@@ -83,14 +90,8 @@ from dials.command_line.refine_bravais_settings import (
 from dials.util import Sorry, log, version
 from dials.util.ascii_art import spot_counts_per_image_plot
 from dials.util.options import OptionParser
-from dxtbx.model import ExperimentList
-from dxtbx.model.experiment_list import (
-    BeamComparison,
-    DetectorComparison,
-    ExperimentListFactory,
-    ExperimentListTemplateImporter,
-    GoniometerComparison,
-)
+
+import screen19
 from screen19.minimum_exposure import suggest_minimum_exposure
 
 Templates = List[Tuple[str, Tuple[int, int]]]

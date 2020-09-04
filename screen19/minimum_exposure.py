@@ -34,7 +34,6 @@ Examples:
         integrated.expt integrated.refl
 
 """
-
 from __future__ import absolute_import, division, print_function
 
 import logging
@@ -51,11 +50,13 @@ import iotbx.phil
 from cctbx import miller
 from libtbx.phil import scope, scope_extract
 
+from dxtbx.model import Experiment, ExperimentList
+
 from dials.array_family import flex
 from dials.util import log
 from dials.util.options import OptionParser
 from dials.util.version import dials_version
-from dxtbx.model import Experiment, ExperimentList
+
 from screen19 import __version__, d_ticks, plot_intensities, terminal_size
 
 # Custom types
